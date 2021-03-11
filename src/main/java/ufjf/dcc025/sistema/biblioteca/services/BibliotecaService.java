@@ -27,13 +27,8 @@ public class BibliotecaService {
     private static List<Livro> livros = new ArrayList<Livro>();
     private static List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
 
-    public BibliotecaService() throws ParseException {
-        // SEEDERS
-        usuarios.add(new Usuario("João Paulo de Carvalho Araújo", "12680339606", sdf.parse("03/02/1997")));
-        usuarios.add(new Funcionario("Andréa Garcia", "12345678901", sdf.parse("20/02/1963")));
+    public static void startUp() {
+        // SEEDING
         
-        livros.add(new Livro("1984", "George Orwell", "Companhia das Letras", 1, 4));
     }
-    
-    
 }

@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class Funcionario extends Usuario {
 
-    public Funcionario(String nome, String cpf, Date dataNascimento) {
-        super(nome, cpf, dataNascimento);
+    public Funcionario(String nome, String cpf, String dataNascimento, String senha) {
+        super(nome, cpf, dataNascimento, senha);
     }
     
     

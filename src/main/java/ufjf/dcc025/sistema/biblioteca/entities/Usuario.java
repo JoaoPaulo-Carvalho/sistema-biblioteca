@@ -9,14 +9,15 @@ public class Usuario {
     private long id;
     private String nome;
     private String cpf;
-    private Date dataNascimento;
+    private String dataNascimento;
     private String senha;
 
-    public Usuario(String nome, String cpf, Date dataNascimento) {
+    public Usuario(String nome, String cpf, String dataNascimento, String senha) {
         this.id = idCount;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        this.senha = senha;
         
         idCount++;
     }
@@ -41,11 +42,11 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
