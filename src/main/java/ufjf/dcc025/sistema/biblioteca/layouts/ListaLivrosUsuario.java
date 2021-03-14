@@ -11,13 +11,13 @@ import javax.swing.table.DefaultTableModel;
 import ufjf.dcc025.sistema.biblioteca.entities.Livro;
 import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
-public class ListaLivros extends javax.swing.JFrame {
+public class ListaLivrosUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form ListaLivros
      */
     private List <Livro> list;
-    public ListaLivros() {
+    public ListaLivrosUsuario() {
         initComponents();
 
         
@@ -25,13 +25,11 @@ public class ListaLivros extends javax.swing.JFrame {
         this.list = BibliotecaService.getLivros();
 
         this.addRowToJtable();
-        
 
     }
     List <Livro> getLista (){
         return this.list;
     }
-    
     
 
     public void addRowToJtable(){
@@ -64,9 +62,7 @@ public class ListaLivros extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        Cadastro = new javax.swing.JButton();
         Voltar = new javax.swing.JButton();
-        Editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,24 +76,10 @@ public class ListaLivros extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        Cadastro.setText("Cadastro");
-        Cadastro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastroActionPerformed(evt);
-            }
-        });
-
-        Voltar.setText("Voltar");
+        Voltar.setText("Sair");
         Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VoltarActionPerformed(evt);
-            }
-        });
-
-        Editar.setText("Editar");
-        Editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarActionPerformed(evt);
             }
         });
 
@@ -111,10 +93,7 @@ public class ListaLivros extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1053, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,43 +102,19 @@ public class ListaLivros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cadastro)
-                    .addComponent(Voltar)
-                    .addComponent(Editar))
+                .addComponent(Voltar)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroActionPerformed
-        NovoLivro telaLivro = new NovoLivro();
-        telaLivro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        telaLivro.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_CadastroActionPerformed
-
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
-        MenuFuncionario menu = new MenuFuncionario();
-        menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        menu.setVisible(true);
-        
+        Login login = new Login();
+        login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        login.setVisible(true);        
         dispose();
     }//GEN-LAST:event_VoltarActionPerformed
-
-    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-   
-       
-        DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-        
-
-
-        EditarLivro telaLivro = new EditarLivro(this.getLista(),Integer.parseInt(tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString())-1);
-        telaLivro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        telaLivro.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_EditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,27 +133,26 @@ public class ListaLivros extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaLivrosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaLivrosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaLivrosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaLivros.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaLivrosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaLivros().setVisible(true);
+                new ListaLivrosUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cadastro;
-    private javax.swing.JButton Editar;
     private javax.swing.JButton Voltar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

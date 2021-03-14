@@ -5,14 +5,13 @@
  */
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
 import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
 import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
@@ -90,6 +89,11 @@ public class NovoUsuario extends javax.swing.JFrame {
         jCheckBox1.setText("Funcionário?");
 
         jButton2.setText("Voltar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,17 +156,25 @@ public class NovoUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");        
-        
+        // TODO add your handling code here:        
         String nome = jTextField1.getText();
         String cpf = jTextField2.getText();
         String dataNascimento = jTextField3.getText();
         String senha = new String(jPasswordField1.getPassword());
+        boolean ehFuncionario = jCheckBox1.isSelected();
+                
+        if (ehFuncionario) {
+            BibliotecaService.getFuncionarios().add(new Funcionario(nome, cpf, dataNascimento, senha));
+            BibliotecaService.updateFuncionarios();
+        } else {
+            BibliotecaService.getUsuarios().add(new Usuario(nome, cpf, dataNascimento, senha));
+            BibliotecaService.updateUsuarios();
+        }
         
-        Usuario usr = new Usuario(nome, cpf, dataNascimento, senha);
-        
-        BibliotecaService.addUsuario(usr, "usuarios.txt");
+        NovoUsuario novoUsr = new NovoUsuario();
+        novoUsr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        novoUsr.setVisible(true);        
+        dispose();
 // CRIAR USUARIO
         // SALVAR ELE NO BANCO
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -178,6 +190,13 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        MenuFuncionario menu = new MenuFuncionario();
+        menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        menu.setVisible(true);        
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

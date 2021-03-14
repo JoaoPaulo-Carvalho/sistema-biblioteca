@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 public class MenuFuncionario extends javax.swing.JFrame {
 
-    /**
+    /**a
      * Creates new form MenuFuncionario
      */
     public MenuFuncionario() {
@@ -43,10 +43,25 @@ public class MenuFuncionario extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cadastrar Usuario");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Realizar Emprestimo");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Consultar Acervo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Sair");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +108,7 @@ public class MenuFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TelaCadastrarLivro telaLivro = new TelaCadastrarLivro();
+        NovoLivro telaLivro = new NovoLivro();
         telaLivro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         telaLivro.setVisible(true);
         dispose();
@@ -105,6 +120,27 @@ public class MenuFuncionario extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        NovoEmprestimo novoEmprestimo = new NovoEmprestimo();
+        novoEmprestimo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        novoEmprestimo.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ListaLivros lista = new ListaLivros();
+        lista.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        lista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        NovoUsuario novoUsuario = new NovoUsuario();
+        novoUsuario.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        novoUsuario.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -7,8 +7,12 @@ package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
+import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
+import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
 /**
  *
@@ -125,15 +129,32 @@ public class Login extends javax.swing.JFrame {
         
         // carregar usuarios
         // varrer usuarios e funcionarios, buscando login
+        List<Usuario> usuarios = BibliotecaService.getUsuarios();
+        List<Funcionario> funcionarios = BibliotecaService.getFuncionarios();
         
-        if (login.equals("123") && !senha.equals("123")) {
-            JOptionPane.showMessageDialog(this, "Login ou senha incorretos!");
-        } else {
-            NovoEmprestimo novoEmprestimo = new NovoEmprestimo();
-            novoEmprestimo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            novoEmprestimo.setVisible(true);
-            dispose();
+        for (Usuario usr:usuarios) {
+            if (usr.getCpf().equals(login) && usr.getSenha().equals(senha)) {
+                ListaLivrosUsuario lisLivUsr = new ListaLivrosUsuario();
+                lisLivUsr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                lisLivUsr.setVisible(true);
+                dispose();
+                BibliotecaService.setUsrLogado(usr);
+                return;
+            }
         }
+        
+        for (Funcionario func:funcionarios) {
+            if (func.getCpf().equals(login) && func.getSenha().equals(senha)) {
+                MenuFuncionario menuFunc = new MenuFuncionario();
+                menuFunc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                menuFunc.setVisible(true);
+                dispose();
+                BibliotecaService.setFuncLogado(func);
+                return;
+            }
+        }
+        
+        JOptionPane.showMessageDialog(this, "Login ou senha incorretos!");
     }//GEN-LAST:event_botaoLoginActionPerformed
 
     /**

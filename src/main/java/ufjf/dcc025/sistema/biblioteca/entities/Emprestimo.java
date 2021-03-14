@@ -1,13 +1,12 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Emprestimo implements Serializable {
+public class Emprestimo {
     
-    private static long idCount = 1;
-    private long id;
+    private static int idCount = 1;
+    private int id;
     private Date dataEmprestimo;
     private Date dataDevolucao;
     private boolean statusDevolucao;
@@ -37,7 +36,7 @@ public class Emprestimo implements Serializable {
         idCount++;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

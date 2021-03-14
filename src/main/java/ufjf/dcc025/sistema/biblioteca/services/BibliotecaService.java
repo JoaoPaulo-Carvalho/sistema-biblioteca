@@ -5,16 +5,8 @@
  */
 package ufjf.dcc025.sistema.biblioteca.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import ufjf.dcc025.sistema.biblioteca.entities.Emprestimo;
 import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
@@ -25,64 +17,91 @@ import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
  *
  * @author joaopaulo
  */
-public class BibliotecaService<T> {
-
+public class BibliotecaService {
+    
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
+    
     private static List<Usuario> usuarios = new ArrayList<Usuario>();
     private static List<Funcionario> funcionarios = new ArrayList<Funcionario>();
     private static List<Livro> livros = new ArrayList<Livro>();
     private static List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+    
+    private static Usuario usrLogado;
+    private static Funcionario funcLogado;
 
-    public static void startUp() throws IOException {
+    public static void startUp() {
         // SEEDING
-        File empretimos = new File("empretimos.txt");
-        File funcionario = new File("funcionarios.txt");
-        File livros = new File("livros.txt");
-        File usuarios = new File("usuarios.txt");
-
-        empretimos.createNewFile();
-        funcionario.createNewFile();
-        livros.createNewFile();
-        usuarios.createNewFile();
-        
-        funcionarios.add(new Funcionario("admin", "12345678901", "01/01/2000", "admin"));
-
-        // insere admin no arquivo de funcionarios
+        loadFuncionarios();
+        loadUsuarios();
+        loadLivros();
     }
     
-    public static void addUsuario (Usuario usr) {
-        usuarios.add(usr);
-        
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            // Writing to a file   
-            mapper.writeValue(new File("usuarios.txt"), usuarios);
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void loadUsuarios() {
+        // se arquivo existe : load arquivos
+        // senao
+        Usuario novoUsr = new Usuario("João Paulo", "12345678901", "03/02/1997", "123");
+        usuarios.add(novoUsr);
+        System.out.println(novoUsr.toString());
+        updateUsuarios();
+    }
+    
+    public static void loadFuncionarios() {
+        // se arquivo existe : load arquivos
+        // senao
+        Funcionario novoFunc = new Funcionario("admin", "00000000000", "01/01/2000", "admin");
+        funcionarios.add(novoFunc);
+        System.out.println(novoFunc.toString());
+        updateFuncionarios();
+    }
+    
+    public static void loadLivros() {
+        for(int i =1;i<9;i++){
+            int acervo = i+3;
+            int emprestado = i+1;
+            int disponivel = emprestado;
+            Livro l = new Livro("nome"+i,"autor"+ i,"editora"+i,acervo,emprestado,"199"+i,"edição"+i);
+            livros.add(l);
         }
+        updateLivros();
+    }
+    
+    public static List<Livro> getLivros() {
+        return livros;
+    }
+    
+    public static List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+    
+    public static List<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
-    private static void addDados(String classe) {;
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            // Writing to a file   
-            mapper.writeValue(new File(classe + ".txt"), objetos);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static Usuario getUsrLogado() {
+        return usrLogado;
     }
 
-    /*public static String serializeObj(Object objeto) throws JsonProcessingException {
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        return ow.writeValueAsString(objeto);
+    public static Funcionario getFuncLogado() {
+        return funcLogado;
+    } 
+
+    public static void setUsrLogado(Usuario usrLogado) {
+        BibliotecaService.usrLogado = usrLogado;
     }
 
-    public static Object deserializeObj(String json) {
-
-    }*/
+    public static void setFuncLogado(Funcionario funcLogado) {
+        BibliotecaService.funcLogado = funcLogado;
+    }
+    
+    public static void updateUsuarios() {
+        // salvar arquivo
+    }
+    
+    public static void updateLivros() {
+        // salvar arquivo
+    }
+    
+    public static void updateFuncionarios() {
+        // salvar arquivo
+    }
 }

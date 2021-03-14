@@ -1,11 +1,9 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
-import java.io.Serializable;
-
-public class Livro implements Serializable {
+public class Livro {
     
-    private static long idCount = 1;
-    private long id;
+    private static int idCount = 1;
+    private int id;
     private String nome;
     private String autor;
     private String editora;
@@ -15,14 +13,14 @@ public class Livro implements Serializable {
     private int totalDisponivel;
     private String edicao;
 
-    public Livro(String nome, String autor, String editora, int quantAcervo, int quantEmprestimo, int totalDisponivel, String ano,String edicao) {
+    public Livro(String nome, String autor, String editora, int quantAcervo, int quantEmprestimo, String ano, String edicao) {
         this.id = idCount;
         this.nome = nome;
         this.autor = autor;
         this.editora = editora;
         this.quantAcervo = quantAcervo;
         this.quantEmprestimo = quantEmprestimo;
-        this.totalDisponivel = totalDisponivel;
+        this.totalDisponivel = quantEmprestimo;
         this.ano = ano;
         this.edicao = edicao;
         idCount++;
@@ -36,7 +34,7 @@ public class Livro implements Serializable {
         this.edicao = edicao;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -49,7 +47,7 @@ public class Livro implements Serializable {
     }
 
     public int getTotalDisponivel() {
-        return totalDisponivel;
+        return  this.totalDisponivel;
     }
 
     public void setTotalDisponivel(int totalDisponivel) {
@@ -85,23 +83,15 @@ public class Livro implements Serializable {
         return quantAcervo;
     }
 
-    public void addQuantAcervo(int quantAcervo) {
-        this.quantAcervo += quantAcervo;
-    }
-
-    public void removeQuantAcervo(int quantAcervo) {
-        this.quantAcervo -= quantAcervo;
+    public void setQuantAcervo(int quantAcervo) {
+        this.quantAcervo = quantAcervo;
     }
 
     public int getQuantEmprestimo() {
         return quantEmprestimo;
     }
 
-    public void addQuantEmprestimo(int quantEmprestimo) {
-        this.quantEmprestimo += quantEmprestimo;
-    }
-
-    public void removeQuantEmprestimo(int quantEmprestimo) {
-        this.quantEmprestimo -= quantEmprestimo;
+    public void setQuantEmprestimo(int quantEmprestimo) {
+        this.quantEmprestimo = quantEmprestimo;
     }
 }

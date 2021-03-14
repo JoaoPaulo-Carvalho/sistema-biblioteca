@@ -1,13 +1,12 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
-import java.io.Serializable;
 import java.util.Date;
 
 
 public class Usuario {
     
-    private static long idCount = 1;
-    private long id;
+    private static int idCount = 1;
+    private int id;
     private String nome;
     private String cpf;
     private String dataNascimento;
@@ -23,7 +22,7 @@ public class Usuario {
         idCount++;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -57,5 +56,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", dataNascimento=" + dataNascimento + ", senha=" + senha + '}';
     }
 }
