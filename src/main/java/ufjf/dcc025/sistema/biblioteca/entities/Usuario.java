@@ -1,5 +1,6 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 

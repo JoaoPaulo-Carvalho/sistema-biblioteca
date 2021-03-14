@@ -5,12 +5,16 @@
  */
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
+import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
 /**
  *
@@ -157,6 +161,8 @@ public class NovoUsuario extends javax.swing.JFrame {
         String senha = new String(jPasswordField1.getPassword());
         
         Usuario usr = new Usuario(nome, cpf, dataNascimento, senha);
+        
+        BibliotecaService.addUsuario(usr, "usuarios.txt");
 // CRIAR USUARIO
         // SALVAR ELE NO BANCO
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -1,6 +1,8 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
-public class Livro {
+import java.io.Serializable;
+
+public class Livro implements Serializable {
     
     private static long idCount = 1;
     private long id;

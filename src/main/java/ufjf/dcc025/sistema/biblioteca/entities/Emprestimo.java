@@ -1,9 +1,10 @@
 package ufjf.dcc025.sistema.biblioteca.entities;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Emprestimo {
+public class Emprestimo implements Serializable {
     
     private static long idCount = 1;
     private long id;
