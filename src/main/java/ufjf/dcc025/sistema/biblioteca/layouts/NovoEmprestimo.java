@@ -6,6 +6,12 @@
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import ufjf.dcc025.sistema.biblioteca.entities.Emprestimo;
+import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
+import ufjf.dcc025.sistema.biblioteca.entities.Livro;
+import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
+import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
 /**
  *
@@ -49,6 +55,11 @@ public class NovoEmprestimo extends javax.swing.JFrame {
         jLabel3.setText("Dias para devolver");
 
         jButton1.setText("Cadastrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +124,37 @@ public class NovoEmprestimo extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Livro livro = null;
+        Funcionario funcionario = BibliotecaService.getFuncLogado();
+        Usuario usuario = null;
+        int diasDevolucao = Integer.parseInt((jTextField3.getText()));
+        
+        for (Livro l:BibliotecaService.getLivros()) {
+            if(l.getId() == Integer.parseInt(jTextField1.getText())) {
+                livro = l;
+                break;
+            }
+        }
+        
+        for (Usuario u:BibliotecaService.getUsuarios()) {
+            if(u.getCpf().equals(jTextField2.getText())) {
+                usuario = u;
+                break;
+            }
+        }
+        
+        if (livro == null) {
+            JOptionPane.showMessageDialog(this, "Código do livro não existe!");
+        } else if (usuario == null) {
+            JOptionPane.showMessageDialog(this, "CPF não cadastrado!");
+        } else {
+            BibliotecaService.getEmprestimos().add(new Emprestimo(livro, funcionario, usuario, diasDevolucao));
+            BibliotecaService.updateEmprestimos();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

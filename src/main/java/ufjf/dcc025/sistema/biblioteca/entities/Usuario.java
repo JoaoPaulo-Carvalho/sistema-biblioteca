@@ -11,6 +11,10 @@ public class Usuario {
     private String cpf;
     private String dataNascimento;
     private String senha;
+    
+    public Usuario() {
+        
+    }
 
     public Usuario(String nome, String cpf, String dataNascimento, String senha) {
         this.id = idCount;
