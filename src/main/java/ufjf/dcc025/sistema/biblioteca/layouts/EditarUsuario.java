@@ -27,11 +27,9 @@ public class EditarUsuario extends javax.swing.JFrame {
      */
     private Usuario usuario;
     
-    public EditarUsuario(List<Usuario> lista, int id, boolean ehFunc ) {
+    public EditarUsuario(Object usuario, boolean ehFunc ) {
         initComponents();
         setLocationRelativeTo( null );
-        
-        this.usuario = lista.get(id);
         
         jTextField1.setText( this.usuario.getNome());
         jTextField2.setText( this.usuario.getCpf());

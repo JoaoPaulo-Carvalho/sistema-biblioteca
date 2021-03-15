@@ -135,7 +135,7 @@ public class BibliotecaService {
                     emprestimos = new ArrayList<Emprestimo>(Arrays.asList(e));
                 }
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo emprestimos.txt!");
+                JOptionPane.showMessageDialog(null, e.getMessage()/*"Não foi possível abrir o arquivo emprestimos.txt!"*/);
             }
         } else {
             seedEmprestimos();

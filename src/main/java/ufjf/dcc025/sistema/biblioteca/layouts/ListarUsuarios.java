@@ -6,6 +6,7 @@
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import java.util.List;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
@@ -183,7 +184,20 @@ public class ListarUsuarios extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
         
+        EditarUsuario editUsr;
+        boolean ehFunc = Boolean.parseBoolean(tblModel.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        if (ehFunc) {
+            editUsr = new EditarUsuario(this.getListaFunc().get(Integer.parseInt(tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString())-1), ehFunc);
+        } else {
+            editUsr = new EditarUsuario(this.getListaUsr().get(Integer.parseInt(tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString())-1), ehFunc);
+        }
+        
+        
+        editUsr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editUsr.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
