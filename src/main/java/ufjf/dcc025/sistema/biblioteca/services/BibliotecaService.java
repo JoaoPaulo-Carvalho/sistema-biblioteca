@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.services;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -21,10 +18,6 @@ import ufjf.dcc025.sistema.biblioteca.entities.Funcionario;
 import ufjf.dcc025.sistema.biblioteca.entities.Livro;
 import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
 
-/**
- *
- * @author joaopaulo
- */
 public class BibliotecaService {
     
     private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

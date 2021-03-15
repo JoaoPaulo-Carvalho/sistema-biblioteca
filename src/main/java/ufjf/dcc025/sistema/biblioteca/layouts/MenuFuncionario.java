@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import javax.swing.JFrame;
 
 public class MenuFuncionario extends javax.swing.JFrame {
 
-    /**a
-     * Creates new form MenuFuncionario
-     */
     public MenuFuncionario() {
         initComponents();
         setLocationRelativeTo( null );

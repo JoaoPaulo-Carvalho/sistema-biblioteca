@@ -1,3 +1,5 @@
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.entities;
 
 import java.util.Calendar;

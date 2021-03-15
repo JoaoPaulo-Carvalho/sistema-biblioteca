@@ -1,3 +1,5 @@
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca;
 
 import javax.swing.JFrame;
@@ -11,9 +13,6 @@ public class Program {
     public static void main(String[] args) {
         
         BibliotecaService.startUp();
-        
-        //ListaLivros lisLiv = new ListaLivros();
-        //lisLiv.setVisible(true);
         
         Login login = new Login();
         login.setVisible(true);

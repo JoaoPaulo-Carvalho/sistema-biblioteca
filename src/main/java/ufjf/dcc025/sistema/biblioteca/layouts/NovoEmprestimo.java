@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import javax.swing.JFrame;
@@ -13,10 +10,6 @@ import ufjf.dcc025.sistema.biblioteca.entities.Livro;
 import ufjf.dcc025.sistema.biblioteca.entities.Usuario;
 import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
-/**
- *
- * @author arauj
- */
 public class NovoEmprestimo extends javax.swing.JFrame {
 
     /**

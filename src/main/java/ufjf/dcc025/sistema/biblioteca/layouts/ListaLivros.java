@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import java.util.List;
@@ -13,9 +10,6 @@ import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
 public class ListaLivros extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ListaLivros
-     */
     private List <Livro> list;
     public ListaLivros() {
         initComponents();
@@ -148,11 +142,8 @@ public class ListaLivros extends javax.swing.JFrame {
     }//GEN-LAST:event_VoltarActionPerformed
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
-   
-       
-        DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
-        
-
+          
+        DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();    
 
         EditarLivro telaLivro = new EditarLivro(this.getLista(),Integer.parseInt(tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString())-1);
         telaLivro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

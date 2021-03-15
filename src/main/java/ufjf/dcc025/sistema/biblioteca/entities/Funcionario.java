@@ -1,6 +1,6 @@
-package ufjf.dcc025.sistema.biblioteca.entities;
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
 
-import java.util.Date;
+package ufjf.dcc025.sistema.biblioteca.entities;
 
 public class Funcionario extends Usuario {
     

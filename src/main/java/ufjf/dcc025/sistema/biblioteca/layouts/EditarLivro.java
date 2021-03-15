@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// JOÃO PAULO DE CARVALHO ARAÚJO - 202065564C
+
 package ufjf.dcc025.sistema.biblioteca.layouts;
 
 import java.util.List;
@@ -12,9 +9,6 @@ import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
 
 public class EditarLivro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastrarLivro
-     */
     private Livro livro;
     
     public EditarLivro(List<Livro> lista, int id ) {
