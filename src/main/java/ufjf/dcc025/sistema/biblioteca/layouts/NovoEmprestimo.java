@@ -118,9 +118,9 @@ public class NovoEmprestimo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        MenuFuncionario menu = new MenuFuncionario();
-        menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        menu.setVisible(true);
+        ListarEmprestimos listarEmp = new ListarEmprestimos();
+        listarEmp.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        listarEmp.setVisible(true);
         
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -153,6 +153,11 @@ public class NovoEmprestimo extends javax.swing.JFrame {
         } else {
             BibliotecaService.getEmprestimos().add(new Emprestimo(livro, funcionario, usuario, diasDevolucao));
             BibliotecaService.updateEmprestimos();
+            
+            ListarEmprestimos listaEmprestimos = new ListarEmprestimos();
+            listaEmprestimos.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            listaEmprestimos.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

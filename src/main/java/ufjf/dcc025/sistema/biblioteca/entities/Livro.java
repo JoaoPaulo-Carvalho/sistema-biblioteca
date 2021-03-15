@@ -12,6 +12,10 @@ public class Livro {
     private int quantEmprestimo;
     private int totalDisponivel;
     private String edicao;
+    
+    public Livro() {
+        
+    }
 
     public Livro(String nome, String autor, String editora, int quantAcervo, int quantEmprestimo, String ano, String edicao) {
         this.id = idCount;

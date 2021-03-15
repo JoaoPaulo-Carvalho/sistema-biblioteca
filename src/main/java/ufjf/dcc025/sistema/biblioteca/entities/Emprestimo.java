@@ -14,6 +14,10 @@ public class Emprestimo {
     private Livro livro;
     private Funcionario funcionario;
     private Usuario usuario;
+    
+    public Emprestimo() {
+        
+    }
 
     public Emprestimo(Livro livro, Funcionario funcionario, Usuario usuario, int diasDevolucao) {
         Calendar cal = Calendar.getInstance();
@@ -30,6 +34,7 @@ public class Emprestimo {
         
         this.statusDevolucao = false;
         this.livro = livro;
+        livro.setTotalDisponivel(livro.getTotalDisponivel() - 1);
         this.funcionario = funcionario;
         this.usuario = usuario;
         
@@ -48,12 +53,20 @@ public class Emprestimo {
         return dataDevolucao;
     }
 
-    public boolean isStatusDevolucao() {
+    public boolean getStatusDevolucao() {
         return statusDevolucao;
     }
 
     public void setStatusDevolucao(boolean statusDevolucao) {
+        if (this.statusDevolucao != statusDevolucao) {
+            if (statusDevolucao) {
+                livro.setTotalDisponivel(livro.getTotalDisponivel() + 1);
+            } else {
+                livro.setTotalDisponivel(livro.getTotalDisponivel() - 1);
+            }
+        }
         this.statusDevolucao = statusDevolucao;
+        
     }
 
     public Livro getLivro() {

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Usuario {
     
-    private static int idCount = 1;
+    private static int idCount;
     private int id;
     private String nome;
     private String cpf;
@@ -24,6 +24,14 @@ public class Usuario {
         this.senha = senha;
         
         idCount++;
+    }
+
+    public static int getIdCount() {
+        return idCount;
+    }
+
+    public static void setIdCount(int idCount) {
+        Usuario.idCount = idCount;
     }
 
     public int getId() {

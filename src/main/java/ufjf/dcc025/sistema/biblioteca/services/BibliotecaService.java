@@ -41,21 +41,42 @@ public class BibliotecaService {
     public static void startUp() {
         mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
+        loadIdCountUsuarios();
         loadFuncionarios();
         loadUsuarios();
         loadLivros();
         loadEmprestimos();
     }
     
-    public static void loadUsuarios() {
-        File f = new File("usuarios.txt");
-        String json;
+    public static void loadIdCountUsuarios() {
+        File f = new File("idCountUsuarios.txt");
+        String data = "";
         
         if(f.exists() && !f.isDirectory()) {             
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-                json = br.readLine();                
-                Usuario [] u = mapper.readValue(json, Usuario[].class);                
-                usuarios = new ArrayList<Usuario>(Arrays.asList(u));
+                data = br.readLine();    
+                if (!data.equals("")) {
+                    Usuario.setIdCount(Integer.parseInt(data));
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo idCountUsuarios.txt!");
+            }
+        } else {
+            seedIdCountUsuarios();
+        }        
+    }
+    
+    public static void loadUsuarios() {
+        File f = new File("usuarios.txt");
+        String json = "";
+        
+        if(f.exists() && !f.isDirectory()) {             
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                json = br.readLine();    
+                if (!json.equals("")) {
+                    Usuario [] u = mapper.readValue(json, Usuario[].class);                
+                    usuarios = new ArrayList<Usuario>(Arrays.asList(u));
+                }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo usuarios.txt!");
             }
@@ -66,13 +87,15 @@ public class BibliotecaService {
     
     public static void loadFuncionarios() {
         File f = new File("funcionarios.txt");
-        String json;
+        String json = "";
         
         if(f.exists() && !f.isDirectory()) {             
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-                json = br.readLine();                
-                Funcionario [] func = mapper.readValue(json, Funcionario[].class);                
-                funcionarios = new ArrayList<Funcionario>(Arrays.asList(func));
+                json = br.readLine();          
+                if (!json.equals("")) {
+                    Funcionario [] func = mapper.readValue(json, Funcionario[].class);                
+                    funcionarios = new ArrayList<Funcionario>(Arrays.asList(func));
+                }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo funcionarios.txt!");
             }
@@ -83,13 +106,15 @@ public class BibliotecaService {
     
     public static void loadLivros() {
         File f = new File("livros.txt");
-        String json;
+        String json = "";
         
         if(f.exists() && !f.isDirectory()) {             
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-                json = br.readLine();                
-                Livro [] l = mapper.readValue(json, Livro[].class);                
-                livros = new ArrayList<Livro>(Arrays.asList(l));
+                json = br.readLine();    
+                if (!json.equals("")) {
+                    Livro [] l = mapper.readValue(json, Livro[].class);                
+                    livros = new ArrayList<Livro>(Arrays.asList(l));
+                }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo livros.txt!");
             }
@@ -100,13 +125,15 @@ public class BibliotecaService {
     
     public static void loadEmprestimos() {
         File f = new File("emprestimos.txt");
-        String json;
+        String json = "";
         
         if(f.exists() && !f.isDirectory()) {             
             try (BufferedReader br = new BufferedReader(new FileReader(f))) {
-                json = br.readLine();                
-                Emprestimo [] e = mapper.readValue(json, Emprestimo[].class);                
-                emprestimos = new ArrayList<Emprestimo>(Arrays.asList(e));
+                json = br.readLine();
+                if (!json.equals("")) {
+                    Emprestimo [] e = mapper.readValue(json, Emprestimo[].class);                
+                    emprestimos = new ArrayList<Emprestimo>(Arrays.asList(e));
+                }
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Não foi possível abrir o arquivo emprestimos.txt!");
             }
@@ -143,9 +170,18 @@ public class BibliotecaService {
         BibliotecaService.funcLogado = funcLogado;
     }
     
+    public static void updateIdCountUsuarios() {
+        try {
+            mapper.writeValue(new File("idCountUsuarios.txt"), Usuario.getIdCount());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar o arquivo idCountUsuarios.txt!");
+        }
+    }
+    
     public static void updateUsuarios() {
         try {
             mapper.writeValue(new File("usuarios.txt"), usuarios);
+            updateIdCountUsuarios();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o arquivo usuarios.txt!");
         }
@@ -153,7 +189,7 @@ public class BibliotecaService {
     
     public static void updateLivros() {
         try {
-            mapper.writeValue(new File("livros.txt"), usuarios);
+            mapper.writeValue(new File("livros.txt"), livros);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o arquivo livros.txt!");
         }
@@ -161,7 +197,8 @@ public class BibliotecaService {
     
     public static void updateFuncionarios() {
         try {
-            mapper.writeValue(new File("funcionarios.txt"), usuarios);
+            mapper.writeValue(new File("funcionarios.txt"), funcionarios);
+            updateIdCountUsuarios();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o arquivo funcionarios.txt!");
         }
@@ -169,7 +206,7 @@ public class BibliotecaService {
     
     public static void updateEmprestimos() {
         try {
-            mapper.writeValue(new File("emprestimos.txt"), usuarios);
+            mapper.writeValue(new File("emprestimos.txt"), emprestimos);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível salvar o arquivo emprestimos.txt!");
         }
@@ -177,6 +214,11 @@ public class BibliotecaService {
 
     public static List<Emprestimo> getEmprestimos() {
         return emprestimos;
+    }
+    
+    public static void seedIdCountUsuarios() {
+        Usuario.setIdCount(1);
+        updateIdCountUsuarios();
     }
     
     public static void seedUsuarios() {

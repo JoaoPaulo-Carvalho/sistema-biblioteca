@@ -39,7 +39,6 @@ public class ListaLivros extends javax.swing.JFrame {
 
         Object rowData[] = new Object[9];
         for(int i = 0; i<list.size();i++){
-            System.out.println(list.get(i).getId());
             rowData[0] = list.get(i).getId();
             rowData[1] = list.get(i).getNome();
             rowData[2] = list.get(i).getAutor();

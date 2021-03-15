@@ -8,6 +8,7 @@ package ufjf.dcc025.sistema.biblioteca.layouts;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -19,16 +20,26 @@ import ufjf.dcc025.sistema.biblioteca.services.BibliotecaService;
  *
  * @author arauj
  */
-public class NovoUsuario extends javax.swing.JFrame {
+public class EditarUsuario extends javax.swing.JFrame {
 
     /**
      * Creates new form NovoUsuario
      */
-    public NovoUsuario() {
+    private Usuario usuario;
+    
+    public EditarUsuario(List<Usuario> lista, int id, boolean ehFunc ) {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo( null );
+        
+        this.usuario = lista.get(id);
+        
+        jTextField1.setText( this.usuario.getNome());
+        jTextField2.setText( this.usuario.getCpf());
+        jTextField3.setText( this.usuario.getDataNascimento());
+        jPasswordField1.setText(this.usuario.getSenha());
+        jCheckBox1.setSelected(ehFunc);
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +85,7 @@ public class NovoUsuario extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setEditable(false);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -87,6 +99,12 @@ public class NovoUsuario extends javax.swing.JFrame {
         });
 
         jCheckBox1.setText("Funcionário?");
+        jCheckBox1.setEnabled(false);
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Voltar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,20 +181,21 @@ public class NovoUsuario extends javax.swing.JFrame {
         String senha = new String(jPasswordField1.getPassword());
         boolean ehFuncionario = jCheckBox1.isSelected();
                 
+        this.usuario.setNome(nome);
+        this.usuario.setCpf(cpf);
+        this.usuario.setDataNascimento(dataNascimento);
+        this.usuario.setSenha(senha);
+        
         if (ehFuncionario) {
-            BibliotecaService.getFuncionarios().add(new Funcionario(nome, cpf, dataNascimento, senha));
             BibliotecaService.updateFuncionarios();
         } else {
-            BibliotecaService.getUsuarios().add(new Usuario(nome, cpf, dataNascimento, senha));
             BibliotecaService.updateUsuarios();
         }
         
-        NovoUsuario novoUsr = new NovoUsuario();
-        novoUsr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        novoUsr.setVisible(true);        
+        ListarUsuarios listarUsr = new ListarUsuarios();
+        listarUsr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        listarUsr.setVisible(true);        
         dispose();
-// CRIAR USUARIO
-        // SALVAR ELE NO BANCO
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -198,6 +217,10 @@ public class NovoUsuario extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -215,14 +238,15 @@ public class NovoUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NovoUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -246,4 +270,5 @@ public class NovoUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
 }
